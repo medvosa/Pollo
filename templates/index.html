@@ -1,0 +1,170 @@
+{% include "header.html" %}
+    <vs-dialog v-model="isLogin">
+        <template #header>
+            <h4 class="not-margin">
+                Добро пожаловать
+            </h4>
+        </template>
+        <form action="/login" method="post">
+            <div class="con-form">
+                <vs-input v-model="email" placeholder="Email" name="email">
+                    <template #icon>
+                        @
+                    </template>
+                </vs-input>
+                <vs-input icon="add" type="password" v-model="password" placeholder="пароль" name="password">
+                    <template #icon>
+                        <img src="/static/vpn_key-24px.svg" alt="p">
+                    </template>
+                </vs-input>
+                <vs-button block type="submit">
+                    Войти
+                </vs-button>
+                <div class="flex">
+                    <a href="#">Забыли пароль?</a>
+                </div>
+
+            </div>
+
+            <template #footer>
+                <div class="footer-dialog">
+                    <div class="new">
+                        New Here? <a href="#">Create New Account</a>
+                    </div>
+                </div>
+            </template>
+        </form>
+    </vs-dialog>
+    <vs-dialog v-model="isRegister">
+        <template #header>
+            <h4 class="not-margin">
+                Добро пожаловать
+            </h4>
+        </template>
+        <form action="/signup" method="post">
+            <div class="con-form">
+                <vs-input v-model="email" placeholder="Email" name="email">
+                    <template #icon>
+                        @
+                    </template>
+                </vs-input>
+                <vs-input icon="add" type="password" v-model="password" placeholder="пароль" name="password">
+                    <template #icon>
+                        <img src="/static/vpn_key-24px.svg" alt="p">
+                    </template>
+                </vs-input>
+                <vs-input icon="add" type="password" v-model="passwordRepeat" placeholder="повторите пароль" name="passwordRepeat">
+                    <template #icon>
+                        <img src="/static/vpn_key-24px.svg" alt="p">
+                    </template>
+                </vs-input>
+                <vs-button block type="submit">
+                    Зарегистрироваться
+                </vs-button>
+
+            </div>
+
+            <template #footer>
+                <div class="footer-dialog">
+                    <div class="new">
+                        New Here? <a href="#">Create New Account</a>
+                    </div>
+                </div>
+            </template>
+        </form>
+    </vs-dialog>
+    <section class="head-section">
+        <div class="head-elements-wrapper">
+            <h1>Узнаем всё про всех.</h1>
+            <button class="create-poll">
+                <a class="create-poll-label" href="/createsurvey">Создать опрос</a>
+            </button>
+        </div>
+    </section>
+    <section class="main-section">
+        <section class="basic-categories">
+            <ul class="basic-categories-list">
+                <li class="popular-item selected">Популярное</li>
+                <li class="new-item">Новое</li>
+                <li class="all-item">Категории</li>
+                <li class="categories-item">Поиск</li>
+            </ul>
+        </section>
+        <section class="index-polls">
+            <div class="poll-card">
+                <div class="poll-picture"></div>
+                <p class="poll-label">Куда пойти работать?</p>
+            </div>
+            <div class="poll-card">
+                <div class="poll-picture"></div>
+                <p class="poll-label">Куда пойти работать?</p>
+            </div>
+            <div class="poll-card">
+                <div class="poll-picture"></div>
+                <p class="poll-label">Куда пойти работать?</p>
+            </div>
+            <div class="poll-card">
+                <div class="poll-picture"></div>
+                <p class="poll-label">Куда пойти работать?</p>
+            </div>
+        </section>
+        <section class="search-polls">
+            <div class="search-wrapper">
+                <svg class="search-icon" width="37.913" height="41.913" viewBox="0 0 37.913 41.913">
+                    <defs>
+                        <style>.a, .b, .d {
+                            fill: none;
+                        }
+
+                        .a, .b {
+                            stroke: #000;
+                            stroke-width: 2px;
+                        }
+
+                        .b {
+                            stroke-linecap: round;
+                        }
+
+                        .c {
+                            stroke: none;
+                        }</style>
+                    </defs>
+                    <g class="a">
+                        <circle class="c" cx="16" cy="16" r="16"/>
+                        <circle class="d" cx="16" cy="16" r="15"/>
+                    </g>
+                    <line class="b" x2="11" y2="12" transform="translate(25.5 28.5)"/>
+                </svg>
+                <p class="search-label">поиск по опросам</p>
+            </div>
+        </section>
+    </section>
+
+</main>
+{% include "footer.html" %}
+{%  raw %}
+<script>
+    var app = new Vue(
+        {
+            el: "#mainApp",
+            methods: {
+                login: function () {
+                    this.isLogin = true;
+                },
+                register: function () {
+                    this.isRegister = true;
+                },
+                closeForm: function () {
+                    this.isLogin = false;
+                    this.sisRegister = false;
+                },
+            },
+            data: {
+                isLogin: false,
+                isRegister: false,
+            }
+        },
+    );
+</script>
+{%  endraw %}
+</html>

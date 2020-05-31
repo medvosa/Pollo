@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+        <main>
+            {%  if user %}
+                {{ user }}
+                <a href="/createsurvey">Создать опрос</a>
+            {%  endif %}
+            <div id="mainApp">
+{#                <button-counter></button-counter>#}
+
+            </div>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        {%  raw %}
+        <script>
+            /*Vue.component('button-counter', {
+                data: function () {
+                    return {
+                        count: 0
+                    }
+                },
+                template: '<button v-on:click="count++">Счётчик кликов — {{ count }}</button>'
+            });*/
+            var app = new Vue({el:"#mainApp"});
+        </script>
+    {%  endraw %}
+    {%  if not user %}
+        Войти
+        <form action="/login" method="post">
+            <input type="text" name="email"><br>
+            <input type="password" name="password">
+            <input type="submit">
+        </form>
+        Зарегистрироваться
+        <form action="/register" method="post">
+            <input type="text" name="email"><br>
+            <input type="password" name="password">
+            <input type="submit">
+        </form>
+    {% endif %}
+    </body>
+</html>
