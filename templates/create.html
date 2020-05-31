@@ -1,11 +1,96 @@
 {% include "header.html" %}
+
+
 <div class="head-section">
     <div class="head-elements-wrapper">
-        <h1>Создать опрос</h1>
+        <h1>Конструктор опросов</h1>
     </div>
 </div>
 
-<input type="text">
-<input type="text" rows="5">
+<h2>Название опроса</h2>
+<vs-input type="text" v-model="title" placeholder="Введите название опроса"></vs-input>
 
+{% raw %}
+
+
+
+<question v-for="(question, num) in questions" v-bind:num="num" v-bind:question="question"></question>
+<question-template v-bind:num="questions.length" question=""></question-template>
+
+
+<vs-button relief dark v-on:click="save">save</vs-button>
+
+{% endraw %}
 {% include "footer.html" %}
+{% raw %}
+
+<script>
+    Vue.component('question', {
+        data:function(){
+            return {};
+        },
+        props:[
+            'num',
+            'question'
+        ],
+        template:`
+            <div>
+                <h3 class="bp0">Вопрос {{ num + 1 }}</h3>
+                <vs-input v-model="question.caption" /></vs-input>
+            </div>
+        `
+    });
+
+    Vue.component('question-template', {
+        data:function(){
+            return {
+                text:'',
+            };
+        },
+        props:[
+            'num'
+        ],
+        methods:{
+            addQuestion:function(event){
+                app.addQuestion(event.target.value);
+                this.text='';
+            }
+        },
+        template:`
+            <div>
+                <h3 class="bp0">Вопрос {{ num + 1 }}</h3>
+                <vs-input v-on:change="addQuestion" v-model="text"></vs-input>
+
+            </div>
+        `
+    });
+
+    var app = new Vue(
+        {
+            el: "#mainApp",
+            methods: {
+                save:function(){
+                    for(let i of this.questions)
+                        console.log(i.caption);
+                },
+                addQuestion:function(caption){
+                    this.questions.push({caption:caption});
+                }
+            },
+            data: {
+                questions:[
+                    {
+                        caption:'name?'
+                    },{
+                        caption:'age?'
+                    },{
+                        caption:'gender?'
+                    }
+                ],
+                title:'',
+            },
+        },
+    );
+
+</script>
+{% endraw %}

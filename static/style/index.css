@@ -186,6 +186,10 @@ footer {
     padding:3px;
 }
 
+.bp0{
+    margin-bottom: 0;
+}
+
 @media (min-width: 786px) {
     .head-elements-wrapper {
         width: 50em;
