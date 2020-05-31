@@ -1,14 +1,14 @@
 @font-face {
     font-family: HelveticaNeue;
-    src: url(../../templates/fonts/HelveticaNeue.ttf);
+    src: url(../fonts/HelveticaNeue.ttf);
 }
 @font-face {
     font-family: HelveticaNeueLight;
-    src: url(../../templates/fonts/HelveticaNeue-Light.ttf);
+    src: url(../fonts/HelveticaNeue-Light.ttf);
 }
 @font-face {
     font-family: HelveticaNeueItalic;
-    src: url(../../templates/fonts/HelveticaNeueCyr-Italic.ttf);
+    src: url(../fonts/HelveticaNeueCyr-Italic.ttf);
 }
 
 html, body {
