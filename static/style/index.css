@@ -231,6 +231,11 @@ footer {
     text-align: center;
 }
 
+.poll-card a{
+    text-decoration: none;
+    outline: none;
+    color:black;
+}
 
 @media (min-width: 786px) {
     .head-elements-wrapper {

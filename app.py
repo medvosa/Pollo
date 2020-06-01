@@ -82,6 +82,15 @@ def ip():
         return 'None'
     return str(ses['userId'])
 
+@app.route('/runpoll/<id>')
+def runp(id):
+    # return str('userId' in ses)
+    survey = session.query(Survey).filter_by(id=id).all()
+    if(len(survey)<1):
+        return redirect('/')
+    survey = survey[0]
+    return render_template('runpoll.html', name = survey.name)
+
 @app.route('/logout')
 def lop():
     # if 'userId' in ses:
