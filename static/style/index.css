@@ -59,14 +59,22 @@ h1 {
     font-size: 4em;
 }
 
+Кириши Никита Электричка, [1 Jun 2020 at 22:31:53]:
 .create-poll {
     width: 18em;
     height: 4.5em;
     border-radius: 1.5em;
     border: none;
     background-color: black;
-    justify-self: center;
     cursor: pointer;
+    padding: .4em;
+    padding-left: 1em;
+    padding-right: 1em;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    justify-self: center;
 }
 
 .create-poll-label {
@@ -74,7 +82,9 @@ h1 {
     margin: 0;
     text-decoration: none;
     color: white;
+    text-align: center;
     font-family: HelveticaNeueLight;
+    letter-spacing: .6px;
 }
 
 .basic-categories {
