@@ -33,7 +33,8 @@ app.config['SECRET_KEY']='sdfvsdh43f3f34'
 
 @app.route('/')
 def hello_world():
-    return render_template('index.html',user = (None if 'userEmail' not in ses else ses['userEmail']))
+    surveys = session.query(Survey).all()
+    return render_template('index.html',user = (None if 'userEmail' not in ses else ses['userEmail']), surveys=surveys)
 
 
 @app.route('/login', methods=["POST"])

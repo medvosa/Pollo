@@ -91,22 +91,12 @@
             </ul>
         </section>
         <section class="index-polls">
+            {% for survey in surveys %}
             <div class="poll-card">
                 <div class="poll-picture"></div>
-                <p class="poll-label">Куда пойти работать?</p>
+                <p class="poll-label">{{ survey.name }}</p>
             </div>
-            <div class="poll-card">
-                <div class="poll-picture"></div>
-                <p class="poll-label">Куда пойти работать?</p>
-            </div>
-            <div class="poll-card">
-                <div class="poll-picture"></div>
-                <p class="poll-label">Куда пойти работать?</p>
-            </div>
-            <div class="poll-card">
-                <div class="poll-picture"></div>
-                <p class="poll-label">Куда пойти работать?</p>
-            </div>
+            {% endfor %}
         </section>
         <section class="search-polls">
             <div class="search-wrapper">
