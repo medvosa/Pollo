@@ -29,3 +29,15 @@ class Survey(Base):
     def __init__(self, name, owner):
         self.name = name
         self.owner = owner
+
+
+class Question(Base):
+    __tablename__='questions'
+    id = Column(Integer, primary_key=True)
+    text = Column(String)
+    survey_id = Column(Integer)
+    answers = Column(String)
+    def __init__(self, text, survey_id,answers='да;нет'):
+        self.text = text
+        self.survey_id = survey_id
+        self.answers=answers

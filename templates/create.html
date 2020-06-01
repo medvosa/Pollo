@@ -72,6 +72,21 @@
                 save:function(){
                     for(let i of this.questions)
                         console.log(i.caption);
+                    fetch('/create', {
+                        method: "POST",
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            title:this.title,
+                            questions:this.questions,
+                        })
+                    }).then(res => {
+                        if (res.status == 200){
+                            console.log('success');
+                        }
+                    });
                 },
                 addQuestion:function(caption){
                     this.questions.push({caption:caption});

@@ -3,6 +3,7 @@ from config.base import *
 from config.local import *
 from sqlalchemy import create_engine, MetaData, inspect
 from sqlalchemy.orm import sessionmaker, scoped_session
+import json
 from models import *
 
 engine = create_engine('sqlite:///'+db_path+'?check_same_thread=false', echo=True)
@@ -19,6 +20,7 @@ app.config['SECRET_KEY']='sdfvsdh43f3f34'
 # User.__table__.create(engine)
 # Survey.__table__.create(engine)
 # Word.__table__.create(engine)
+# Question.__table__.create(engine)
 
 # u1 = User("medvosa","passwd")
 # session.add(u1)
@@ -94,6 +96,23 @@ def crp():
     if 'userId' not in ses:
         return redirect('/')
     return render_template('create.html')
+
+@app.route('/create',methods=['POST'])
+def crpp():
+    if 'userId' not in ses:
+        return 'error'
+    title = request.json['title']
+    questions = request.json['questions']
+    survey = Survey(title,ses['userId'])
+    session.add(survey);
+    session.commit()
+    print(survey.id)
+    for question in questions:
+        session.add(Question(question['caption'],survey.id))
+    session.commit()
+    print(title,questions)
+    return 'ok'
+
 
 if __name__ == '__main__':
     app.run()
