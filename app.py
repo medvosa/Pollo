@@ -4,6 +4,7 @@ from config.local import *
 from sqlalchemy import create_engine, MetaData, inspect
 from sqlalchemy.orm import sessionmaker, scoped_session
 import json
+from jinja2 import Markup
 from models import *
 
 engine = create_engine('sqlite:///'+db_path+'?check_same_thread=false', echo=True)
@@ -15,6 +16,7 @@ metadata = MetaData()
 # metadata.create_all(engine)
 app = Flask(__name__)
 
+app.jinja_env.globals['include_raw'] = lambda filename : Markup(app.jinja_loader.get_source(app.jinja_env, filename)[0])
 app.config['SECRET_KEY']='sdfvsdh43f3f34'
 
 # User.__table__.create(engine)
@@ -31,10 +33,21 @@ app.config['SECRET_KEY']='sdfvsdh43f3f34'
 # print(session.query(Survey,User).join(User,
 #                                       User.id == Survey.owner).first())
 
+@app.context_processor
+def t():
+    return {
+        "user": (None if 'userEmail' not in ses else ses['userEmail']),
+    }
+
 @app.route('/')
 def hello_world():
     surveys = session.query(Survey).all()
-    return render_template('index.html',user = (None if 'userEmail' not in ses else ses['userEmail']), surveys=surveys)
+    user_surveys=[]
+    print(ses['userId'])
+    if 'userId' in ses:
+        print('here')
+        user_surveys = session.query(Survey).filter_by(owner=ses['userId']).all()
+    return render_template('index.html', surveys=surveys, user_surveys=user_surveys, is_main=True)
 
 
 @app.route('/login', methods=["POST"])

@@ -23,8 +23,9 @@
         <ul class="navbar">
             {% if user %}
                 <li><a href="/logout" class="logout-link">выход</a></li>
+                {% if not is_main %}<li><a href="/" class="logout-link">на главную</a></li>{% endif %}
                 <li>{{ user }}</li>
-                <li class="head-create-poll"><a class="head-create-poll-label">Создать опрос</a></li>
+                <li class="head-create-poll"><a class="head-create-poll-label" href="/createsurvey">Создать опрос</a></li>
             {% else %}
                 <li class="login-item" onclick="app.register()">регистрация</li>
                 <li class="signup-item" onclick="app.login()">вход</li>

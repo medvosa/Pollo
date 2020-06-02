@@ -10,6 +10,10 @@ body {
     color: white;
 }
 
+.navbar > li > a {
+    color:white;
+}
+
 main {
     width: 100%;
     height: 70%;
