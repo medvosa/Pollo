@@ -47,6 +47,8 @@ def hello_world():
     if 'userId' in ses:
         print('here')
         user_surveys = session.query(Survey).filter_by(owner=ses['userId']).all()
+        print(user_surveys)
+    print(user_surveys)
     return render_template('index.html', surveys=surveys, user_surveys=user_surveys, is_main=True)
 
 

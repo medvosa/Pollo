@@ -19,6 +19,9 @@ window.app = js.new(js.global.Vue, Object{
             window.app.isLogin = false
             window.app.isRegister = false
         end;
+        toggle = function()
+            print('toggle')
+        end
     };
 	data = Object{
         isLogin = false;

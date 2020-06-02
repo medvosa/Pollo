@@ -86,9 +86,10 @@
     
     <!-- НАЧАЛО ЗАРЕГАНЫЙ ЮЗЕР -->
     <section>
-        <section class="user-polls">
-            <ul class="basic-categories-list">
-                <li class="popular-item selected">Мои опросы</li>
+        <section class="user-main-section">
+            <ul class="user-basic-categories-list">
+                <li class="user-popular-item selected">Мои опросы</li>
+                <li v-on:click="toggle">Развернуть</li>
             </ul>
         </section>
         <h2 class="user-notes">У вас есть несколько обновлений по последним созданным опросам. <a class="check-stats" href="">Проверьте статистику.</a></h2>
@@ -134,29 +135,12 @@
 
 </main>
 {% include "footer.html" %}
-{%  raw %}
 <script>
-    var app = new Vue(
-        {
-            el: "#mainApp",
-            methods: {
-                login: function () {
-                    this.isLogin = true;
-                },
-                register: function () {
-                    this.isRegister = true;
-                },
-                closeForm: function () {
-                    this.isLogin = false;
-                    this.sisRegister = false;
-                },
-            },
-            data: {
-                isLogin: false,
-                isRegister: false,
-            }
-        },
-    );
+    function arr(...x){
+        return x;
+    }
 </script>
-{%  endraw %}
+<script type="text/lua">
+   {% include "/scripts/main.lua" %}
+</script>
 </html>
