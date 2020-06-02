@@ -92,7 +92,20 @@ h1 {
     overflow-x: scroll;
 }
 
+.user-basic-categories {
+    width: 100%;
+    margin-left: 1.3em;
+    overflow-x: scroll;
+}
+
 .basic-categories-list {
+    list-style: none;
+    display: flex;
+    margin-top: 3.3em;
+    width: 50em;
+}
+
+.user-basic-categories-list {
     list-style: none;
     display: flex;
     margin-top: 3.3em;
@@ -109,7 +122,21 @@ h1 {
     cursor: pointer;
 }
 
+.user-basic-categories-list > li {
+    font-family: HelveticaNeueLight;
+    margin-right: 1em;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
 .basic-categories-list > li:nth-child(1) {
+    margin-right: .8em !important;
+}
+
+.user-basic-categories-list > li:nth-child(1) {
     margin-right: .8em !important;
 }
 
@@ -148,6 +175,16 @@ h1 {
     display: grid;
     justify-content: center;
     align-items: center;
+}
+
+.user-index-polls {
+    margin-top: 2em;
+    margin-bottom: 1.5em;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 0;
+    overflow: hidden;
 }
 
 .search-polls {
@@ -258,6 +295,19 @@ footer {
     color:black;
 }
 
+.user-popular-item {
+    margin-left: .4em;
+}
+
+.user-notes {
+    margin-left: 2.6em;
+    font-weight: 200;
+}
+
+.check-stats {
+    color: black;
+}
+
 @media (min-width: 786px) {
     .head-elements-wrapper {
         width: 50em;
@@ -272,11 +322,23 @@ footer {
     .basic-categories-list {
         width: 40em;
     }
+    .user-basic-categories-list {
+        width: 40em;
+    }
     .index-polls {
         display: grid;
         justify-content: center;
         align-items: center;
         grid-template-columns: repeat(auto-fit, 25em);
         margin-left: 1.9em;
+    }
+    .user-index-polls {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: repeat(auto-fit, 25em);
+        margin-left: 1.9em;
+        height: 0;
+        overflow: hidden;
     }
 }

@@ -86,12 +86,14 @@
     
     <!-- НАЧАЛО ЗАРЕГАНЫЙ ЮЗЕР -->
     <section>
-        <section class="user-polls">
-            <ul class="basic-categories-list">
-                <li class="popular-item selected">Мои опросы</li>
+        <section class="user-main-section">
+            <ul class="user-basic-categories-list">
+                <li class="user-popular-item selected">Мои опросы</li>
+                <li>Развернуть</li>
             </ul>
         </section>
-        <section class="index-polls">
+        <h2 class="user-notes">У вас есть несколько обновлений по последним созданным опросам. <a class="check-stats" href="">Проверьте статистику.</a></h2>
+        <section class="user-index-polls">
             {% for survey in surveys %}
             <div class="poll-card">
                 <a href="/runpoll/{{ survey.id }}">
