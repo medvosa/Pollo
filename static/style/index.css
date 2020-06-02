@@ -109,7 +109,7 @@ h1 {
     list-style: none;
     display: flex;
     margin-top: 3.3em;
-    width: 50em;
+    width: 35em;
 }
 
 .basic-categories-list > li {
@@ -301,11 +301,16 @@ footer {
 
 .user-notes {
     margin-left: 2.6em;
+    margin-right: 2.6em;
     font-weight: 200;
 }
 
 .check-stats {
     color: black;
+}
+
+.user-main-section {
+    overflow-x: scroll;
 }
 
 @media (min-width: 786px) {
@@ -323,7 +328,7 @@ footer {
         width: 40em;
     }
     .user-basic-categories-list {
-        width: 40em;
+        width: 35em;
     }
     .index-polls {
         display: grid;
