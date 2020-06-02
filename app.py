@@ -84,7 +84,6 @@ def ip():
 
 @app.route('/runpoll/<id>')
 def runp(id):
-    # return str('userId' in ses)
     survey = session.query(Survey).filter_by(id=id).all()
     if(len(survey)<1):
         return redirect('/')
@@ -93,13 +92,9 @@ def runp(id):
 
 @app.route('/logout')
 def lop():
-    # if 'userId' in ses:
-    #     ses.pop('userId')
     ses['userId']=None
     ses['userEmail']=None
     return redirect('/')
-    # ses.pop('userId')
-    # return redirect('/')
 
 @app.route('/createsurvey')
 def crp():
