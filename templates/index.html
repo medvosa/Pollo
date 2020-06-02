@@ -73,6 +73,7 @@
             </template>
         </form>
     </vs-dialog>
+    <!-- ГОСТЬ (РАСКОММЕНТЬ)
     <section class="head-section">
         <div class="head-elements-wrapper">
             <h1>Узнаем всё про всех.</h1>
@@ -81,6 +82,28 @@
             </button>
         </div>
     </section>
+    --> 
+    
+    <!-- НАЧАЛО ЗАРЕГАНЫЙ ЮЗЕР -->
+    <section>
+        <section class="user-polls">
+            <ul class="basic-categories-list">
+                <li class="popular-item selected">Мои опросы</li>
+            </ul>
+        </section>
+        <section class="index-polls">
+            {% for survey in surveys %}
+            <div class="poll-card">
+                <a href="/runpoll/{{ survey.id }}">
+                    <div class="poll-picture"></div>
+                    <p class="poll-label">{{ survey.name }}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </section>
+    </section>
+    <!-- КОНЕЦ ЗАРЕГАНЫЙ ЮЗЕР -->
+
     <section class="main-section">
         <section class="basic-categories">
             <ul class="basic-categories-list">
