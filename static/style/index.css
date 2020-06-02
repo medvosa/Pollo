@@ -187,11 +187,32 @@ footer {
 
 }
 
+.head-create-poll {
+    border-radius: .55em;
+    border: none;
+    background-color: black;
+    cursor: pointer;
+    padding: .4em;
+    padding-left: 1em;
+    padding-right: 1em;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.head-create-poll-label {
+    font-size: .6em;
+    letter-spacing: 1px;
+    margin: 0;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-family: HelveticaNeueLight;
+}
+
 .logout-link{
-    color:white;
+    color:black;
     text-decoration:none;
     border-radius:5px;
-    background-color:black;
     padding:3px;
 }
 
