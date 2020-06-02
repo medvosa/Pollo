@@ -222,8 +222,10 @@ h1 {
 footer {
     height: 4em;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+}
+.copyright{
+    margin-right:3em;
 }
 
 .auth-div{
