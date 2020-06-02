@@ -91,7 +91,8 @@
                 <li class="popular-item selected">Мои опросы</li>
             </ul>
         </section>
-        <section class="index-polls">
+        <h2 class="user-notes">У вас есть несколько обновлений по последним созданным опросам. <a class="check-stats" href="">Проверьте статистику.</a></h2>
+        <section class="user-index-polls">
             {% for survey in user_surveys %}
             <div class="poll-card">
                 <a href="/runpoll/{{ survey.id }}">
@@ -133,12 +134,29 @@
 
 </main>
 {% include "footer.html" %}
+{%  raw %}
 <script>
-    function arr(...x){
-        return x;
-    }
+    var app = new Vue(
+        {
+            el: "#mainApp",
+            methods: {
+                login: function () {
+                    this.isLogin = true;
+                },
+                register: function () {
+                    this.isRegister = true;
+                },
+                closeForm: function () {
+                    this.isLogin = false;
+                    this.sisRegister = false;
+                },
+            },
+            data: {
+                isLogin: false,
+                isRegister: false,
+            }
+        },
+    );
 </script>
-<script type="text/lua">
-    {% include('scripts/main.lua') %}
-</script>
+{%  endraw %}
 </html>
