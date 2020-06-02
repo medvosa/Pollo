@@ -43,7 +43,7 @@ def t():
 def hello_world():
     surveys = session.query(Survey).all()
     user_surveys=[]
-    print(ses['userId'])
+    # print(ses['userId'])
     if 'userId' in ses:
         print('here')
         user_surveys = session.query(Survey).filter_by(owner=ses['userId']).all()

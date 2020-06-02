@@ -1,7 +1,7 @@
 {% include "header.html" %}
     <vs-dialog v-model="isLogin">
         <template #header>
-            <h4 class="not-margin">
+            <h4 class="not-margin form-title">
                 Добро пожаловать
             </h4>
         </template>
@@ -25,19 +25,11 @@
                 </div>
 
             </div>
-
-            <template #footer>
-                <div class="footer-dialog">
-                    <div class="new">
-                        New Here? <a href="#">Create New Account</a>
-                    </div>
-                </div>
-            </template>
         </form>
     </vs-dialog>
     <vs-dialog v-model="isRegister">
         <template #header>
-            <h4 class="not-margin">
+            <h4 class="not-margin form-title">
                 Добро пожаловать
             </h4>
         </template>
@@ -63,17 +55,10 @@
                 </vs-button>
 
             </div>
-
-            <template #footer>
-                <div class="footer-dialog">
-                    <div class="new">
-                        New Here? <a href="#">Create New Account</a>
-                    </div>
-                </div>
-            </template>
         </form>
     </vs-dialog>
-    <!-- ГОСТЬ (РАСКОММЕНТЬ)
+    <!-- ГОСТЬ (РАСКОММЕНТЬ) -->
+    {% if not user %}
     <section class="head-section">
         <div class="head-elements-wrapper">
             <h1>Узнаем всё про всех.</h1>
@@ -82,14 +67,17 @@
             </button>
         </div>
     </section>
-    --> 
+
     
     <!-- НАЧАЛО ЗАРЕГАНЫЙ ЮЗЕР -->
-    <section>
+    {% else %}
+        <section>
         <section class="user-main-section">
             <ul class="user-basic-categories-list">
                 <li class="user-popular-item selected">Мои опросы</li>
-                <li v-on:click="toggle">Развернуть</li>
+                {% raw %}
+                <li v-on:click="toggle">{{ togglePollsText }}</li>
+                {% endraw %}
             </ul>
         </section>
         <h2 class="user-notes">У вас есть несколько обновлений по последним созданным опросам. <a class="check-stats" href="">Проверьте статистику.</a></h2>
@@ -104,6 +92,7 @@
             {% endfor %}
         </section>
     </section>
+    {% endif %}
     <!-- КОНЕЦ ЗАРЕГАНЫЙ ЮЗЕР -->
 
     <section class="main-section">
