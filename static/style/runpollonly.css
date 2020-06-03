@@ -32,6 +32,25 @@ main {
     transition: padding 0.5s, transform 0.5s;
 }
 
+.buttons{
+    display: flex;
+    flex-direction: row;
+}
+
+.question-1{
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.question-0{
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+button{
+    color:black !important;
+}
+
 .run-poll-button {
     color: white;
     text-decoration: none;
@@ -56,6 +75,9 @@ main {
 }
 .survey-title div span{
     font-size:0.5em;
+}
+.outQuestions{
+    min-height: 100px;
 }
 
 .questions{
@@ -84,6 +106,9 @@ main {
     flex-direction: column;
 }
 
+.dnone{
+    display:none;
+}
 
 .gr0{
     flex-grow:0;
