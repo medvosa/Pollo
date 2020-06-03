@@ -43,13 +43,18 @@ main {
 }
 
 .survey-title{
-    margin-top:15vw;
+    /*margin-top:15vw;*/
     color:white;
     /*margin-left: auto;*/
     /*margin-right: auto;*/
-    transition: margin 0.5s, font-size 0.5s;
+    display: flex;
+    flex-direction: row;
+    transition: margin 0.5s, font-size 0.5s, padding-top 0.5s;
 }
-.survey-title span{
+.survey-title div{
+    padding:1em;
+}
+.survey-title div span{
     font-size:0.5em;
 }
 
@@ -66,6 +71,15 @@ main {
     margin:0;
     padding-left:10px;
     font-size:2.5em;
+    width:100%;
+}
+
+.wd0{
+    width:0;
+}
+.w100{
+    width:100%;
+    padding:0 !important;
 }
 
 .run-poll-button-started {
