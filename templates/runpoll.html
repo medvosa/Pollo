@@ -1,17 +1,43 @@
 
     <link rel="stylesheet" href="../static/style/runpollonly.css">
 {% include "header.html" %}
-        <div style="height: 100%">
-            <h1 :class="pollNameClass">
-                {{ name }}
-                <span :class="startClass" @click="start"><b>Пройти опрос</b></span>
+        <div :class="outWrap">
+            <div :class="leftEmpty"></div>
+            <h1 :class="surveyTitle">
+                <div :class="innerClass">{{ name }}</div>
+                <div :class="btnWrap" style="margin:auto">
+                    <span @click="start" :class="runPollButtonClass"><b>Пройти опрос</b></span>
+                </div>
             </h1>
+            <div :class="'outQuestions '+questions">
+                {% raw %}
+                <div :class="mainPart">
+                    <span :class="questionTextClass">
+                        {{ question }}
+                    </span>
+                    {% endraw %}
+                    <div class="buttons">
+                        <vs-button relief HEX color="rgb(247,247,247)" @click="answer(0)">да</vs-button>
+                        <vs-button relief HEX color="rgb(247,247,247)" @click="answer(1)">нет</vs-button>
+                    </div>
+                </div>
+                <div :class="questionsEnd">
+                    Конец
+                </div>
+            </div>
+            <div class="empty"></div>
         </div>
     </main>
 <script>
     function arr(...x){
         return x;
     }
+</script>
+<script type="text/lua">
+local js = require "js"
+local window = js.global
+
+    window.questions = { {% for i in questions %}{text= "{{ i.text }}" },{% endfor %} };
 </script>
 <script type="text/lua">
    {% include "/scripts/runpoll.lua" %}

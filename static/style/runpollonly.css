@@ -32,6 +32,25 @@ main {
     transition: padding 0.5s, transform 0.5s;
 }
 
+.buttons{
+    display: flex;
+    flex-direction: row;
+}
+
+.question-1{
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.question-0{
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+button{
+    color:black !important;
+}
+
 .run-poll-button {
     color: white;
     text-decoration: none;
@@ -39,12 +58,79 @@ main {
     font-size: 5vw;
     text-align: center;
     margin:auto;
-    transition: font-size 0.5s;
+    transition: opacity 0.5s;
+}
+
+.survey-title{
+    /*margin-top:15vw;*/
+    color:white;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    display: flex;
+    flex-direction: row;
+    transition: margin 0.5s, font-size 0.5s, padding-top 0.5s;
+}
+.survey-title div{
+    padding:1em;
+}
+.survey-title div span{
+    font-size:0.5em;
+}
+.outQuestions{
+    min-height: 100px;
+}
+
+.questions{
+    background-color:white;
+    opacity:0;
+    transition: opacity 0.5s;
+    width: calc(100% - 6em);
+    padding:30px;
+    border-radius:30px;
+}
+
+.op1{
+    opacity:1;
+}
+
+.empty {
+    transition: flex-grow 0.5s;
+    flex-grow:1;
+}
+
+.out-wrap{
+   height: 100%; width:100%; margin-left:3em; display: flex; flex-direction: row;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.dnone{
+    display:none;
+}
+
+.gr0{
+    flex-grow:0;
+}
+
+.survey-title-started{
+    margin:0;
+    padding-left:10px;
+    font-size:2.5em;
+    width:100%;
+}
+
+.wd0{
+    width:0;
+}
+.w100{
+    width:100%;
+    padding:0 !important;
 }
 
 .run-poll-button-started {
-    padding:0 !important;
-    font-size:0;
+    opacity:0;
 }
 
 .poll-name-started{
