@@ -33,6 +33,7 @@ nav {
 .navbar {
     display: flex;
     list-style: none;
+    align-items: center; 
 }
 .navbar > li {
     margin-left: none;
@@ -172,7 +173,9 @@ h1 {
     background-position: center;
     background-size: cover;
     background-color: transparent;
-    background-blend-mode: color-burn;
+    /*
+    background-blend-mode: color-burn; 
+    */
     width: 21em;
     height: 13em;
     border-radius: 3em;
@@ -181,6 +184,7 @@ h1 {
     transition: .2s;
 }
 
+/*
 .features-wrapper {
     justify-content: center;
     align-items: center;
@@ -188,6 +192,7 @@ h1 {
     height: 100%;
     display: none;
 }
+*/
 
 .poll-picture:hover .features-wrapper {
     display: flex;

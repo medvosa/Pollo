@@ -1,24 +1,28 @@
 {% include "header.html" %}
 
 
-<div class="head-section">
-    <div class="head-elements-wrapper">
-        <h1>Конструктор опросов</h1>
+    <div class="head-section constructing-polls-label">
+        <div class="head-elements-wrapper">
+            <h1>Конструктор опросов</h1>
+        </div>
     </div>
+
+<div class="tool-blocks-wrapper">
+
+    <h2>Название опроса</h2>
+    <vs-input type="text" v-model="title" placeholder="Введите название опроса"></vs-input>
+
+    {% raw %}
+
+
+
+    <question v-for="(question, num) in questions" v-bind:num="num" v-bind:question="question"></question>
+    <question-template v-bind:num="questions.length" question=""></question-template>
+
+
+    <vs-button class="save-button" relief dark v-on:click="save">Готово</vs-button>
+
 </div>
-
-<h2>Название опроса</h2>
-<vs-input type="text" v-model="title" placeholder="Введите название опроса"></vs-input>
-
-{% raw %}
-
-
-
-<question v-for="(question, num) in questions" v-bind:num="num" v-bind:question="question"></question>
-<question-template v-bind:num="questions.length" question=""></question-template>
-
-
-<vs-button relief dark v-on:click="save">save</vs-button>
 
 {% endraw %}
 {% include "footer.html" %}
