@@ -103,7 +103,7 @@ def runp(id):
     if(len(survey)<1):
         return redirect('/')
     survey = survey[0]
-    return render_template('runpoll.html', name = survey.name)
+    return render_template('runpoll.html', name=survey.name, questions=questions)
 
 @app.route('/logout')
 def lop():
