@@ -22,6 +22,10 @@ window.app = js.new(js.global.Vue, Object{
             this.runPollButtonClass="run-poll-button run-poll-button-started";
             this.btnWrap="wd0";
             this.innerClass="w100";
+            this.outWrap="out-wrap column";
+            window:setTimeout(function()
+                this.questions="questions op1";
+            end,500)
             --window.app.togglePollsText="Свернуть";
         end
     };
@@ -29,7 +33,9 @@ window.app = js.new(js.global.Vue, Object{
         questionNum=0;
         leftEmpty="empty";
         surveyTitle="survey-title";
+        outWrap="out-wrap";
         btnWrap="";
+        questions="questions wd0";
         innerClass="";
         runPollButtonClass="run-poll-button";
 	}
