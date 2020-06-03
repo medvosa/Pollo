@@ -16,16 +16,18 @@ window.app = js.new(js.global.Vue, Object{
 	methods = Object{
         start = function()
             print("start")
-            this.pollNameClass = this.pollNameClass.." poll-name-started"
-            this.startClass= this.startClass..' run-poll-button-started';
             this.questionNum=1;
+            this.leftEmpty="empty gr0";
+            this.surveyTitle="survey-title survey-title-started";
+            this.runPollButtonClass="run-poll-button run-poll-button-started";
             --window.app.togglePollsText="Свернуть";
         end
     };
 	data = Object{
         questionNum=0;
-        startClass="run-poll-button";
-        pollNameClass="poll-name"
+        leftEmpty="empty";
+        surveyTitle="survey-title";
+        runPollButtonClass="run-poll-button";
 	}
 })
 

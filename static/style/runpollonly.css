@@ -39,12 +39,37 @@ main {
     font-size: 5vw;
     text-align: center;
     margin:auto;
-    transition: font-size 0.5s;
+    transition: opacity 0.5s;
+}
+
+.survey-title{
+    margin-top:15vw;
+    color:white;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    transition: margin 0.5s, font-size 0.5s;
+}
+.survey-title span{
+    font-size:0.5em;
+}
+
+.empty {
+    transition: flex-grow 0.5s;
+    flex-grow:1;
+}
+
+.gr0{
+    flex-grow:0;
+}
+
+.survey-title-started{
+    margin:0;
+    padding-left:10px;
+    font-size:2.5em;
 }
 
 .run-poll-button-started {
-    padding:0 !important;
-    font-size:0;
+    opacity:0;
 }
 
 .poll-name-started{
