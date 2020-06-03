@@ -1,26 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style/index.css">
-    <link rel="stylesheet" href="../static/style/runpollonly.css">
-    <title>Document</title>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul class="navbar">
-                <li class="login-item">регистрация</li>
-                <li class="signup-item">вход</li>
-                <li class="head-create-poll"><a class="head-create-poll-label">Создать опрос</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <h1 class="poll-name">{{ name }}</h1>
-        <a href="" class="run-poll-button"><b>Пройти опрос</b></a>
+    <link rel="stylesheet" href="../static/style/runpollonly.css">
+{% include "header.html" %}
+        <div style="height: 100%">
+            <h1 :class="pollNameClass">
+                {{ name }}
+                <span :class="startClass" @click="start"><b>Пройти опрос</b></span>
+            </h1>
+        </div>
     </main>
+<script>
+    function arr(...x){
+        return x;
+    }
+</script>
+<script type="text/lua">
+   {% include "/scripts/runpoll.lua" %}
+</script>
+
 </body>
 </html>

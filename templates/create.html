@@ -23,82 +23,13 @@
 {% endraw %}
 {% include "footer.html" %}
 {% raw %}
-
 <script>
-    Vue.component('question', {
-        data:function(){
-            return {};
-        },
-        props:[
-            'num',
-            'question'
-        ],
-        template:`
-            <div>
-                <h3 class="bp0">Вопрос {{ num + 1 }}</h3>
-                <vs-input v-model="question.caption" /></vs-input>
-            </div>
-        `
-    });
-
-    Vue.component('question-template', {
-        data:function(){
-            return {
-                text:'',
-            };
-        },
-        props:[
-            'num'
-        ],
-        methods:{
-            addQuestion:function(event){
-                app.addQuestion(event.target.value);
-                this.text='';
-            }
-        },
-        template:`
-            <div>
-                <h3 class="bp0">Вопрос {{ num + 1 }}</h3>
-                <vs-input v-on:change="addQuestion" v-model="text"></vs-input>
-
-            </div>
-        `
-    });
-
-    var app = new Vue(
-        {
-            el: "#mainApp",
-            methods: {
-                save:function(){
-                    for(let i of this.questions)
-                        console.log(i.caption);
-                    fetch('/create', {
-                        method: "POST",
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            title:this.title,
-                            questions:this.questions,
-                        })
-                    }).then(res => {
-                        if (res.status == 200){
-                            console.log('success');
-                        }
-                    });
-                },
-                addQuestion:function(caption){
-                    this.questions.push({caption:caption});
-                }
-            },
-            data: {
-                questions:[
-                ],
-                title:'',
-            },
-        },
-    );
-
+    function arr(...x){
+        return x;
+    }
 </script>
+
 {% endraw %}
+<script type="text/lua">
+    {% include('scripts/create.lua') %}
+</script>
