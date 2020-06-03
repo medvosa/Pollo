@@ -27,6 +27,9 @@ main {
     color: white;
     display: grid;
     font-size: 11vw;
+    margin: auto;
+    /*transform: translateX(-35vw);*/
+    transition: padding 0.5s, transform 0.5s;
 }
 
 .run-poll-button {
@@ -35,7 +38,20 @@ main {
     outline: none;
     font-size: 5vw;
     text-align: center;
+    margin:auto;
+    transition: font-size 0.5s;
 }
+
+.run-poll-button-started {
+    padding:0 !important;
+    font-size:0;
+}
+
+.poll-name-started{
+    padding:0 !important;
+    transform: translateX(-40vw);
+}
+
 .head-create-poll {
     border-radius: .55em;
     border: none;
@@ -58,6 +74,7 @@ main {
     font-family: HelveticaNeueLight;
 }
 
+
 @media (min-width: 786px) {
     main {
         width: 100%;
@@ -73,11 +90,11 @@ main {
     }
     
     .run-poll-button {
-        padding: 3em;
+        /*padding: 3em;*/
         color: white;
         text-decoration: none;
         outline: none;
-        font-size: 1.5em;
+        /*font-size: 1.5em;*/
         text-align: center;
     }
 }
