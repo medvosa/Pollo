@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Text
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -26,9 +26,11 @@ class Survey(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     owner = Column(Integer)
-    def __init__(self, name, owner):
+    image_url=Column(Text)
+    def __init__(self, name, owner, image_url):
         self.name = name
         self.owner = owner
+        self.image_url = image_url
 
 
 class Question(Base):

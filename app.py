@@ -126,7 +126,8 @@ def crpp():
         return 'error'
     title = request.json['title']
     questions = request.json['questions']
-    survey = Survey(title,ses['userId'])
+    image_url=request.json['imageUrl']
+    survey = Survey(title,ses['userId'],image_url)
     session.add(survey);
     session.commit()
     print(survey.id)

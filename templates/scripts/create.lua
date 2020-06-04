@@ -66,6 +66,7 @@ window.app = js.new(js.global.Vue, Object{
                     ['Content-Type'] = 'application/json'
                 },
                 body = window.JSON:stringify(Object{
+                    imageUrl=window.app.imageUrl,
                     title = window.app.title,
                     questions = window.app.questions,
                 })
@@ -77,6 +78,7 @@ window.app = js.new(js.global.Vue, Object{
         end
     };
 	data = Object{
+        imageUrl="";
         title='';
         questions=window:arr();
 	}
