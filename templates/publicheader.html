@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/style/index.css">
+    <link rel="stylesheet" href="/static/style/create.css">
+    <title>Title</title>
+    <link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+    <style>
+        .vs-input {
+            width: 100%;
+            margin: 5px;
+        }
+    </style>
+    <script src="https://github.com/fengari-lua/fengari-web/releases/download/v0.1.4/fengari-web.js" type="text/javascript"></script>
+</head>
+<body>
+
+</div>
+<header>
+    <nav>
+        <ul class="navbar">
+            {% if user %}
+                <li><a href="/logout" class="logout-link">выход</a></li>
+                {% if not is_main %}<li><a href="/" class="logout-link">на главную</a></li>{% endif %}
+                <li>{{ user }}</li>
+                <li class="head-create-poll"><a class="head-create-poll-label" href="/createsurvey">Создать опрос</a></li>
+                <li class="features">
+                    <div>
+                        <span>анализировать статистику</span>
+                        <span>поделиться</span>
+                    </div>
+                </li>
+            {% else %}
+                <li class="login-item" onclick="app.register()">регистрация</li>
+                <li class="signup-item" onclick="app.login()">вход</li>
+                <div class="features">
+                    <span>анализировать статистику</span>
+                    <span>поделиться</span>
+                </div>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<main id="mainApp">

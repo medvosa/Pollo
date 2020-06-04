@@ -48,6 +48,10 @@ nav {
     align-items: center;
 }
 
+.logout-link {
+    padding: 0 !important;
+}
+
 .head-elements-wrapper {
     width: 25em;
     display: grid;
@@ -58,6 +62,15 @@ nav {
 
 h1 {
     font-size: 4em;
+}
+
+.features {
+    color: white;
+    font-size: 1.5em;
+}
+
+.features span {
+    margin-right: 1.5em;
 }
 
 .create-poll {
