@@ -28,6 +28,15 @@
     justify-self: center;
 }
 
+svg:hover + .vs-input-parent input {
+    background-color: #FD104E;
+    color:white;
+}
+
+.vs-input-content{
+    width: calc(100vw - 7.4em);
+}
+
 .constructing-polls-label {
     justify-content: flex-start;
 }

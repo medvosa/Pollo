@@ -18,10 +18,23 @@
             'num',
             'question'
         );
+        methods=Object{
+            remove = function(self)
+                print(math.floor(self.num+1))
+                print(window.app.questions:splice(math.floor(self.num),1))
+                --table.remove(window.app.questions,math.floor(self.num+1))
+            end;
+        };
         template=[[
-            <div>
+            <div v-bind:id="'wr'+num">
                 <h3 class="bp0">Вопрос {{ num + 1 }}</h3>
-                <vs-input v-model="question.caption" /></vs-input>
+                <svg xmlns="http://www.w3.org/2000/svg" width="17.707" height="17.707" viewBox="0 0 17.707 17.707" @click="remove" style="float: right; transform: translate(30px, 11px);">
+                    <g transform="translate(0.354 0.354)">
+                        <line style="fill:none;stroke:#000;" x2="17" y2="17"/>
+                        <line style="fill:none;stroke:#000;" x2="17" y2="17" transform="translate(17) rotate(90)"/>
+                    </g>
+                </svg>
+                <vs-input v-model="question.caption"/>
             </div>
         ]]
     });
@@ -39,7 +52,7 @@
             addQuestion = function(self,event)
                 window.app:addQuestion(event.target.value);
                 self.text='';
-            end
+            end;
         },
         template = [[
             <div>
