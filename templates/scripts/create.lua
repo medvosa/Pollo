@@ -12,7 +12,10 @@
 
     Vue:component('question', Object{
         data=function()
-            return Object{};
+            return Object{
+                answers=window:arr('да','нет');
+                ansVar="";
+            };
         end;
         props= window:arr(
             'num',
@@ -24,6 +27,12 @@
                 print(window.app.questions:splice(math.floor(self.num),1))
                 --table.remove(window.app.questions,math.floor(self.num+1))
             end;
+            addAnsVar=function(self)
+                print(self.answers)
+                print(self.ansVar)
+                self.answers:push(self.ansVar)
+                self.ansVar=""
+            end
         };
         template=[[
             <div v-bind:id="'wr'+num">
@@ -35,6 +44,11 @@
                     </g>
                 </svg>
                 <vs-input v-model="question.caption"/>
+                <div class="buttons-wrapper">
+                    <vs-button flat dark color="#F7F7F7" size="large" v-for="i in answers" >{{i}}</vs-button>
+
+                    <vs-input placeholder="другое" v-on:change="addAnsVar" v-model="ansVar"></vs-input>
+                </div>
             </div>
         ]]
     });
