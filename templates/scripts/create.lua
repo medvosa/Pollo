@@ -31,6 +31,7 @@
                 print(self.answers)
                 print(self.ansVar)
                 self.answers:push(self.ansVar)
+                window.app:setAnswers(self.num,self.answers)
                 self.ansVar=""
             end
         };
@@ -101,7 +102,10 @@ window.app = js.new(js.global.Vue, Object{
         end;
         addQuestion=function(t,caption)
             print(caption);
-            window.app.questions:push(Object{caption=caption});
+            window.app.questions:push(Object{caption=caption, answers=window.arr('','да','нет')});
+        end;
+        setAnswers = function(self,num,answers)
+            self.questions[num].answers=answers;
         end
     };
 	data = Object{

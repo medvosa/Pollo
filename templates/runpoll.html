@@ -17,8 +17,8 @@
                     </span>
                     {% endraw %}
                     <div class="buttons">
-                        <vs-button relief HEX color="rgb(247,247,247)" @click="answer(0)">да</vs-button>
-                        <vs-button relief HEX color="rgb(247,247,247)" @click="answer(1)">нет</vs-button>
+                        <vs-button relief HEX color="rgb(247,247,247)" @click="answer(0)" v-for="i in availableAnswers.split(';')">{% raw %}{{ i }}{% endraw %}</vs-button>
+{#                        <vs-button relief HEX color="rgb(247,247,247)" @click="answer(1)">нет</vs-button>#}
                     </div>
                 </div>
                 <div :class="questionsEnd">
@@ -36,8 +36,10 @@
 <script type="text/lua">
 local js = require "js"
 local window = js.global
+local Object = dofile("https://gist.githubusercontent.com/daurnimator/5a7fa933e96e14333962093322e0ff95/raw/8c6968be0111c7becc485a692162ad100e87d9c7/Object.lua").Object
 
-    window.questions = { {% for i in questions %}{text= "{{ i.text }}" },{% endfor %} };
+
+    window.questions = { {% for i in questions %}{text= "{{ i.text }}"; answers="{{ i.answers }}"},{% endfor %} };
 </script>
 <script type="text/lua">
    {% include "/scripts/runpoll.lua" %}

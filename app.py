@@ -132,7 +132,10 @@ def crpp():
     session.commit()
     print(survey.id)
     for question in questions:
-        session.add(Question(question['caption'],survey.id))
+        ans = question['answers']
+        if len(ans) <2:
+            session.add(Question(question['caption'],survey.id))
+        session.add(Question(question['caption'], survey.id, ";".join(ans)))
     session.commit()
     print(title,questions)
     return 'ok'

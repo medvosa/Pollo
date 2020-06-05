@@ -34,6 +34,12 @@ window.app = js.new(js.global.Vue, Object{
                 this.questionNum=this.questionNum+1;
                 if this.questionNum<=#window.questions then
                     this.question = window.questions[this.questionNum].text;
+                    this.availableAnswers = window.questions[this.questionNum].answers;
+                    print("set");
+                    --for i=1,#this.availableAnswers do
+                    --    print(this.availableAnswers[i])
+                    --end
+                    --print("===")
                     this.questionTextClass="question-1";
                 else
                     this.ended = true;
@@ -58,6 +64,7 @@ window.app = js.new(js.global.Vue, Object{
         surveyTitle="survey-title";
         outWrap="out-wrap";
         mainPart="";
+        answers={};
         btnWrap="";
         questions="questions wd0";
         innerClass="";
@@ -65,7 +72,7 @@ window.app = js.new(js.global.Vue, Object{
         ended = false;
         questionTextClass="question-1";
         runPollButtonClass="run-poll-button";
-        answers = {};
+        availableAnswers = window.questions[1].answers;
 	}
 })
 
