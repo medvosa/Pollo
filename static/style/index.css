@@ -27,7 +27,9 @@ header, section, main, footer {
 
 nav {
     margin-left: 1em;
-    margin-top: 2.5em;
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
 }
 
 .navbar {
@@ -35,6 +37,11 @@ nav {
     list-style: none;
     align-items: center; 
 }
+
+.public-navbar {
+    margin-top: 1.5em !important;
+}
+
 .navbar > li {
     margin-left: none;
     font-size: 1.5em;
@@ -48,6 +55,10 @@ nav {
     align-items: center;
 }
 
+.logout-link {
+    padding: 0 !important;
+}
+
 .head-elements-wrapper {
     width: 25em;
     display: grid;
@@ -58,6 +69,19 @@ nav {
 
 h1 {
     font-size: 4em;
+}
+
+.features {
+    color: white;
+    font-size: 1.5em;
+    list-style: none;
+    display: flex;
+    margin-right: .7em;
+    margin-bottom: 1.3em;
+}
+
+.features li {
+    margin-right: 1.5em;
 }
 
 .create-poll {
@@ -416,5 +440,21 @@ footer {
         grid-template-columns: repeat(auto-fit, 25em);
         margin-left: 1.9em;
         overflow: hidden;
+    }
+}
+
+
+
+@media (max-width: 1300px) {
+    nav {
+        display: grid;
+    }
+    .public-navbar {
+        margin-top: 2em !important;
+    }
+}
+
+@media (max-width: 786px) {
+    header {
     }
 }
