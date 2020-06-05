@@ -23,6 +23,7 @@ app.config['SECRET_KEY']='sdfvsdh43f3f34'
 # Survey.__table__.create(engine)
 # Word.__table__.create(engine)
 # Question.__table__.create(engine)
+# Answer.__table__.create(engine)
 
 # u1 = User("medvosa","passwd")
 # session.add(u1)
@@ -98,6 +99,7 @@ def ip():
         return 'None'
     return str(ses['userId'])
 
+
 @app.route('/runpoll/<id>')
 def runp(id):
     survey = session.query(Survey).filter_by(id=id).all()
@@ -106,7 +108,23 @@ def runp(id):
     survey = survey[0]
     questions = session.query(Question).filter_by(survey_id=id).all()
     print(questions);
-    return render_template('runpoll.html', name=survey.name, questions=questions)
+    return render_template('runpoll.html', survey_id=id, name=survey.name, questions=questions)
+
+
+@app.route('/pollsave',methods=['POST'])
+def spp():
+    if 'userId' not in ses:
+        return 'error'
+    poll_id = request.json['pollId']
+    answers = request.json['answers']
+    questions = request.json['questions']
+    # survey = Survey(title,ses['userId'],image_url)
+    print(poll_id, answers, ses['userId'], questions)
+    for i in range(len(answers)):
+        print(questions[i],answers[i])
+        session.add(Answer(questions[i],ses['userId'],answers[i]))
+    session.commit()
+    return 'ok'
 
 @app.route('/logout')
 def lop():
