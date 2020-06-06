@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session as ses, redirect
 from config.base import *
 from config.local import *
-from sqlalchemy import create_engine, MetaData, inspect
+from sqlalchemy import create_engine, MetaData, inspect, and_
 from sqlalchemy.orm import sessionmaker, scoped_session
 import json
 from jinja2 import Markup
@@ -108,7 +108,21 @@ def runp(id):
     survey = survey[0]
     questions = session.query(Question).filter_by(survey_id=id).all()
     print(questions);
-    return render_template('runpoll.html', survey_id=id, name=survey.name, questions=questions)
+    exists = session.query(Answer)\
+        .join(Question,
+            Answer.question_id==Question.id,
+            )\
+        .filter(
+            and_(
+                Answer.user_id==ses['userId'],
+                Question.survey_id == id
+            )
+        )\
+        .first()
+    print("exists: ",exists)
+    if exists is not None:
+        return render_template('cannotComplete.html', name=survey.name)
+    return render_template('runpoll.html', canComplete=True, survey_id=id, name=survey.name, questions=questions)
 
 
 @app.route('/pollsave',methods=['POST'])
@@ -120,6 +134,8 @@ def spp():
     questions = request.json['questions']
     # survey = Survey(title,ses['userId'],image_url)
     print(poll_id, answers, ses['userId'], questions)
+    print(questions)
+    print(answers)
     for i in range(len(answers)):
         print(questions[i],answers[i])
         session.add(Answer(questions[i],ses['userId'],answers[i]))
