@@ -18,6 +18,7 @@ app = Flask(__name__)
 
 app.jinja_env.globals['include_raw'] = lambda filename : Markup(app.jinja_loader.get_source(app.jinja_env, filename)[0])
 app.config['SECRET_KEY']='sdfvsdh43f3f34'
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 # User.__table__.create(engine)
 # Survey.__table__.create(engine)
@@ -105,6 +106,8 @@ def runp(id):
     survey = session.query(Survey).filter_by(id=id).all()
     if(len(survey)<1):
         return redirect('/')
+    if 'userId' not in ses:
+        return 'error'
     survey = survey[0]
     questions = session.query(Question).filter_by(survey_id=id).all()
     print(questions);
@@ -123,6 +126,31 @@ def runp(id):
     if exists is not None:
         return render_template('cannotComplete.html', name=survey.name)
     return render_template('runpoll.html', canComplete=True, survey_id=id, name=survey.name, questions=questions)
+
+
+@app.route('/stats/<poll_id>')
+def statsp(poll_id):
+    if 'userId' not in ses:
+        return 'error'
+    survey = session.query(Survey).filter_by(id=poll_id).first()
+    questions = session.query(Question).filter_by(survey_id=poll_id).all()
+    print(survey)
+    if not survey:
+        return render_template("pollDoesNotExist.html")
+    res_answers=[]
+    for i in questions:
+        print(i.id)
+        print("Number of answers: ",len(i.answers.split(';')))
+        answers = [i.answer_num for i in session.query(Answer).filter_by(question_id=i.id).all()]
+        res_answers.append(answers)
+        print(answers)
+        print(i.answers)
+        print([answers.count(j) for j in range(len(i.answers.split(';')))])
+    return render_template('pollstats.html', survey=survey,
+                           questions=questions,
+                           answers=[[k for k in [answers.count(j) for j in range(len(i.answers.split(';')))]] for answers in res_answers]
+    #";".join([str(k) for k in [answers.count(j) for j in range(len(i.answers.split(';')))]])
+                           )
 
 
 @app.route('/pollsave',methods=['POST'])

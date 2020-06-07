@@ -1,0 +1,4 @@
+#t2{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}

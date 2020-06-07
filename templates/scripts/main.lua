@@ -1,10 +1,10 @@
 local js = require "js"
 local window = js.global
 
-package.loadlib("https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js", "*")
-package.loadlib("https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js","*")
+package.loadlib("/static/vue.js", "*")
+package.loadlib("/static/vuesax.min.js","*")
 
-local Object = dofile("https://gist.githubusercontent.com/daurnimator/5a7fa933e96e14333962093322e0ff95/raw/8c6968be0111c7becc485a692162ad100e87d9c7/Object.lua").Object
+local Object = dofile("/static/lib/Object.lua").Object
 
 
 isPollsToggled = false;

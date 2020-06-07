@@ -1,0 +1,25 @@
+{% include "header.html" %}
+<link rel="stylesheet" href="/static/style/stats.css">
+<h1>{{ survey.name }}</h1>
+<h2>Опрос пройден {{ times }} раз(а).</h2>
+<h2>Вот мнение Ваших клиентов:</h2>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
+{%  raw %}
+<div id="t2">
+    <question :question="i" v-for="i in arr"></question>
+
+</div>
+{%  endraw %}
+
+<script>
+answers_res=[{%  for i in answers %}{{ i }},{% endfor %}]
+let i=0;
+    window.questions = [ {% for i in questions %}{text: "{{ i.text }}", answers:"{{ i.answers }}".split(';'), {# data:"{{ i.answers }}".split(';').map(i=>3), #}
+            data:answers_res[i++]},{% endfor %} ];
+    for (let i=0; i<answers_res.length; i++)
+    answers_res[i].length=window.questions[i].answers.length
+</script>
+<script type="text/lua">
+   {% include "/scripts/pollStats.lua" %}
+</script>
