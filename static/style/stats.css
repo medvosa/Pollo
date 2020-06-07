@@ -1,4 +1,18 @@
 #t2{
     display: grid;
-    grid-template-columns: 50% 50%;
+    justify-content: space-evenly;
+    grid-template-columns: repeat(auto-fit, 500px);
+}
+
+.poll-stats-card{
+    /*border:1px solid grey;*/
+    border-radius: 5px;
+    background-color: #F7F7F7;
+    margin:5px;
+    padding-left:15px;
+    box-shadow: 8px 8px 8px #3332;
+}
+
+.title-wrap{
+    text-align: center;
 }

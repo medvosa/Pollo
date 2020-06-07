@@ -1,8 +1,10 @@
 {% include "header.html" %}
 <link rel="stylesheet" href="/static/style/stats.css">
-<h1>{{ survey.name }}</h1>
-<h2>Опрос пройден {{ times }} раз(а).</h2>
-<h2>Вот мнение Ваших клиентов:</h2>
+<div class="title-wrap">
+    <h1>{{ survey.name }}</h1>
+    <h2>Опрос пройден {{ times }} раз(а).</h2>
+    <h2>Вот мнение Ваших клиентов:</h2>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
 {%  raw %}

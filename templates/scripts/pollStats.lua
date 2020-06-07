@@ -40,7 +40,7 @@ js.global.Vue:component('question', Object{
 
     },
     template = [[
-        <div>
+        <div class="poll-stats-card">
             <h3 class="bp0"> {{ question.text }}</h3>
             <div id="chart">
                 <apexchart type="pie" width="380" :options="chartOptions" :series="series"></apexchart>
@@ -54,7 +54,9 @@ local Object = dofile("https://gist.githubusercontent.com/daurnimator/5a7fa933e9
 
 window.app = js.new(js.global.Vue,Object{
     el='#t2';
+    methods = Object{
 
+    };
     data=Object{
         arr=window.questions;
 
