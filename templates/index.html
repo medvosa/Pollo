@@ -3,6 +3,7 @@
         <template #header>
             <h4 class="not-margin form-title">
                 Добро пожаловать
+                <div v-if="isError">Логин или пароль введен неверно</div>
             </h4>
         </template>
         <form action="/login" method="post">

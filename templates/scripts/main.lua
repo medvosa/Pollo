@@ -42,8 +42,14 @@ window.app = js.new(js.global.Vue, Object{
         isRegister = false;
         passwordRepeat='';
         password='';
+        isError=false;
         test=window.arr(0,1,2,3);
         email='';
 	}
 })
 
+
+if window.location.hash=="#errorlogin" then
+    window.app:login()
+    window.app.isError=true;
+end

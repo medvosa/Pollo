@@ -62,9 +62,9 @@ def lp():
     user = session.query(User).filter_by(email = email, password = password).first()
     print(user)
     if not user:
-        return 'error'
+        return redirect('/#errorlogin')
     if user.password != password:
-        return 'error'
+        return redirect('/#errorlogin')
     ses['userId']=user.id
     ses['userEmail']=user.email
     return redirect('/')
