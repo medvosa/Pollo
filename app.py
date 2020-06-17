@@ -148,6 +148,7 @@ def statsp(poll_id):
         print([answers.count(j) for j in range(len(i.answers.split(';')))])
     return render_template('pollstats.html', survey=survey,
                            questions=questions,
+                           times=len(answers),
                            answers=[[k for k in [answers.count(j) for j in range(len(i.answers.split(';')))]] for answers in res_answers]
     #";".join([str(k) for k in [answers.count(j) for j in range(len(i.answers.split(';')))]])
                            )
