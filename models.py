@@ -1,6 +1,8 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Text
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+import os
+import binascii
 
 Base = declarative_base()
 
@@ -27,10 +29,15 @@ class Survey(Base):
     name = Column(String)
     owner = Column(Integer)
     image_url=Column(Text)
-    def __init__(self, name, owner, image_url):
+    hash = Column(Text)
+    def __init__(self, name, owner, image_url, private):
         self.name = name
         self.owner = owner
         self.image_url = image_url
+        if private:
+            self.hash=binascii.hexlify(os.urandom(16))
+        else:
+            self.hash=""
 
 
 class Question(Base):

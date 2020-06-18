@@ -16,8 +16,10 @@
     <vs-input type="text" v-model="imageUrl" placeholder="Введите адрес картинки"></vs-input>
     {% raw %}
 
-
-
+    <h2>Настройки доступа</h2>
+    <vs-checkbox v-model="isPrivate">
+        Сделать опрос приватным (доступным только по ссылке)
+    </vs-checkbox>
     <question v-for="(question, num) in questions" v-bind:num="num" v-bind:question="question"></question>
     <question-template v-bind:num="questions.length" question=""></question-template>
 

@@ -96,6 +96,7 @@ window.app = js.new(js.global.Vue, Object{
                 body = window.JSON:stringify(Object{
                     imageUrl=window.app.imageUrl,
                     title = window.app.title,
+                    isPrivate = window.app.isPrivate,
                     questions = window.app.questions,
                 })
             })
@@ -110,6 +111,7 @@ window.app = js.new(js.global.Vue, Object{
     };
 	data = Object{
         imageUrl="";
+        isPrivate=false;
         title='';
         questions=window:arr();
 	}

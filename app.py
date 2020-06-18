@@ -189,8 +189,10 @@ def crpp():
         return 'error'
     title = request.json['title']
     questions = request.json['questions']
+    private=request.json['isPrivate']
+    print(private)
     image_url=request.json['imageUrl']
-    survey = Survey(title,ses['userId'],image_url)
+    survey = Survey(title,ses['userId'],image_url,private)
     session.add(survey);
     session.commit()
     print(survey.id)
@@ -201,7 +203,7 @@ def crpp():
         session.add(Question(question['caption'], survey.id, ";".join(ans)))
     session.commit()
     print(title,questions)
-    return 'ok'
+    return 'ok:'+str(survey.hash if private else '')
 
 
 if __name__ == '__main__':
