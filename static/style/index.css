@@ -386,6 +386,10 @@ footer {
     overflow-x: scroll;
 }
 
+.empty{
+    flex-grow:1;
+}
+
 @media (min-width: 786px) {
     .head-elements-wrapper {
         width: 50em;

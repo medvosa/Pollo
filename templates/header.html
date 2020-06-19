@@ -37,8 +37,35 @@
                 <li class="login-item" onclick="app.register()">регистрация</li>
                 <li class="signup-item" onclick="app.login()">вход</li>
             {% endif %}
+            <li class="empty"></licls>
+            <li  onclick="toggleDarkTheme()">dark mode</li>
         </ul>
     </nav>
 </header>
+<script>
 
+    window.onload=function(){
+        if (localStorage.dark=="true"){
+            console.log(darkStyle);
+            darkStyle.media='';
+        }
+        else{
+            console.log('aaa');
+        }
+    };
+    function toggleDarkTheme(){
+        console.log(localStorage.dark);
+
+        if (localStorage.dark=="true"){
+            console.log('1');
+            darkStyle.media='max-width:1px';
+            localStorage.dark=false;
+        }
+        else{
+            console.log('0');
+            darkStyle.media="";
+            localStorage.dark=true;
+        }
+    }
+</script>
 <main id="mainApp">
