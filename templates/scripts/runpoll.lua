@@ -75,6 +75,12 @@ window.app = js.new(js.global.Vue, Object{
             print(ans)
             this.answers[#this.answers+1]=ans;
             --print(Inspect.inspect(this.answers));
+        end;
+        register=function()
+            window.location:replace('/#toreg')
+        end;
+        login=function()
+            window.location:replace('/#tologin')
         end
     };
 	data = Object{

@@ -45,6 +45,7 @@ window.app = js.new(js.global.Vue, Object{
         isError=false;
         test=window.arr(0,1,2,3);
         email='';
+        errorText='';
 	}
 })
 
@@ -53,3 +54,36 @@ if window.location.hash=="#errorlogin" then
     window.app:login()
     window.app.isError=true;
 end
+
+if window.location.hash=="#errorreg_invalid_mail" then
+    window.app:register()
+    window.app.isError=true;
+    window.app.errorText='введен неверный email';
+end
+
+if window.location.hash=="#errorreg_exists" then
+    window.app:register()
+    window.app.isError=true;
+    window.app.errorText='пользователь с таким email уже существует';
+end
+
+if window.location.hash=="#errorreg_not_match" then
+    window.app:register()
+    window.app.isError=true;
+    window.app.errorText='пароль и повтор пароля должны совпадать';
+end
+
+if window.location.hash=="#errorreg_easy_password" then
+    window.app:register()
+    window.app.isError=true;
+    window.app.errorText='пароль слишком простой';
+end
+
+if window.location.hash=="#tologin" then
+    window.app:login()
+end
+
+if window.location.hash=="#toreg" then
+    window.app:register()
+end
+

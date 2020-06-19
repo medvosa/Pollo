@@ -32,6 +32,9 @@
         <template #header>
             <h4 class="not-margin form-title">
                 Добро пожаловать
+                {% raw %}
+                <div v-if="isError">{{ errorText }}</div>
+                {% endraw %}
             </h4>
         </template>
         <form action="/signup" method="post">

@@ -77,15 +77,15 @@ def rp():
     password_repeat = request.form.get('passwordRepeat',None)
     import re
     if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-        return 'неверный email'
+        return redirect('/#errorreg_invalid_mail')
     if len(password)<8:
-        return 'слишком простой пароль'
+        return redirect('/#errorreg_easy_password')
     if password_repeat!=password:
-        return 'пароль и повтор пароля должны совпадать'
+        return redirect('/#errorreg_not_match')
     user = session.query(User).filter_by(email = email).first()
     print(user)
     if user:
-        return 'пользователь с таким email уже существует'
+        return redirect('/#errorreg_exists')
     user = User(email,password)
     session.add(user)
     session.commit()
