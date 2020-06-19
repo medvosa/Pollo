@@ -78,6 +78,20 @@
         ]]
     });
 
+function str_split(str, sep)
+    if sep == nil then
+        sep = '%s'
+    end
+
+    local res = {}
+    local func = function(w)
+        table.insert(res, w)
+    end
+
+    string.gsub(str, '[^'..sep..']+', func)
+    return res
+end
+
 
 window.app = js.new(js.global.Vue, Object{
 	el = "#mainApp";
@@ -87,7 +101,7 @@ window.app = js.new(js.global.Vue, Object{
             for i =1, #window.app.questions do
                 print(window.app.questions[i-1].caption)
             end
-            js.global:fetch('/create', Object{
+            js.global:js_fetch('/create', Object{
                 method = "POST",
                 headers =  Object{
                     ['Accept'] = 'application/json',
@@ -99,7 +113,13 @@ window.app = js.new(js.global.Vue, Object{
                     isPrivate = window.app.isPrivate,
                     questions = window.app.questions,
                 })
-            })
+            },function(self,res)
+                window.res=res
+                print(str_split(res,"'")[2])
+                window.app.created=true;
+                window.app.link=window.location.origin .. '/hash/' .. str_split(res,"'")[2]
+                --print(str_split(res,"'")[2])
+            end)
         end;
         addQuestion=function(t,caption)
             print(caption);
@@ -107,13 +127,19 @@ window.app = js.new(js.global.Vue, Object{
         end;
         setAnswers = function(self,num,answers)
             self.questions[num].answers=answers;
-        end
+        end;
+        copyLink = function()
+            js.global:cpy(window.app.link)
+        end;
     };
 	data = Object{
         imageUrl="";
         isPrivate=false;
         title='';
         questions=window:arr();
+        activeTooltip1= false;
+        created=false;
+        link='';
 	}
 })
 {% endraw %}

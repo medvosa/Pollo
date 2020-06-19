@@ -29,15 +29,15 @@ class Survey(Base):
     name = Column(String)
     owner = Column(Integer)
     image_url=Column(Text)
-    hash = Column(Text)
+    t_hash = Column(String)
     def __init__(self, name, owner, image_url, private):
         self.name = name
         self.owner = owner
         self.image_url = image_url
         if private:
-            self.hash=binascii.hexlify(os.urandom(16))
+            self.t_hash=binascii.hexlify(os.urandom(8))
         else:
-            self.hash=""
+            self.t_hash=""
 
 
 class Question(Base):

@@ -109,6 +109,36 @@ def runp(id):
     if 'userId' not in ses:
         return 'error'
     survey = survey[0]
+    if len(survey.t_hash)>0:
+        return render_template('cannotComplete.html', name=survey.name)
+    questions = session.query(Question).filter_by(survey_id=id).all()
+    print(questions);
+    exists = session.query(Answer)\
+        .join(Question,
+            Answer.question_id==Question.id,
+            )\
+        .filter(
+            and_(
+                Answer.user_id==ses['userId'],
+                Question.survey_id == id
+            )
+        )\
+        .first()
+    print("exists: ",exists)
+    if exists is not None:
+        return render_template('cannotComplete.html', name=survey.name)
+    return render_template('runpoll.html', canComplete=True, survey_id=id, name=survey.name, questions=questions)
+
+
+@app.route('/hash/<hsh>')
+def runphash(hsh):
+    survey = session.query(Survey).filter(Survey.t_hash.like(hsh)).all()
+    if(len(survey)<1):
+        return 'no such survey'
+    if 'userId' not in ses:
+        return 'error'
+    survey = survey[0]
+    id = survey.id
     questions = session.query(Question).filter_by(survey_id=id).all()
     print(questions);
     exists = session.query(Answer)\
@@ -203,7 +233,7 @@ def crpp():
         session.add(Question(question['caption'], survey.id, ";".join(ans)))
     session.commit()
     print(title,questions)
-    return 'ok:'+str(survey.hash if private else '')
+    return 'ok:'+str(survey.t_hash if private else '')
 
 
 if __name__ == '__main__':
