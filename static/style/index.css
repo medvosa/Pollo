@@ -146,12 +146,25 @@ h1 {
     margin-bottom: .15em;
 }
 
+
+
 .poll-card {
     width: 21em;
     display: grid;
     justify-content: center;
     align-items: center;
     text-align: center;
+    transition: transform .2s;
+}
+
+.form-title{
+    text-align: center;
+    font-weight: bolder;
+    margin-bottom: 1.4em !important;
+}
+
+.poll-card:hover{
+    transform: scale(1.1);
 }
 
 .poll-picture {
@@ -180,10 +193,9 @@ h1 {
 .user-index-polls {
     margin-top: 2em;
     margin-bottom: 1.5em;
-    display: grid;
+    display: none;
     justify-content: center;
     align-items: center;
-    height: 0;
     overflow: hidden;
 }
 
@@ -210,8 +222,10 @@ h1 {
 footer {
     height: 4em;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+}
+.copyright{
+    margin-right:3em;
 }
 
 .auth-div{
@@ -259,6 +273,34 @@ footer {
 
 .vs-input-content {
     margin-bottom: .5em;
+}
+
+.vs-dialog__content.notFooter {
+    margin-bottom: 10px;
+}
+
+.con-form {
+    display: grid !important;
+}
+
+.con-form > .flex {
+    margin-left: .5em;
+    margin-top: .5em;
+    margin-bottom: .5em !important;
+}
+
+.con-form > .flex > a {
+    outline: none;
+    text-decoration: none;
+    color: black;
+}
+
+.vs-dialog__content.notFooter {
+    margin-bottom: 0 !important;
+}
+
+.vs-button__content {
+    text-align: center;
 }
 
 .vs-dialog__content.notFooter {
@@ -338,12 +380,11 @@ footer {
         margin-left: 1.9em;
     }
     .user-index-polls {
-        display: grid;
+        display: none;
         justify-content: center;
         align-items: center;
         grid-template-columns: repeat(auto-fit, 25em);
         margin-left: 1.9em;
-        height: 0;
         overflow: hidden;
     }
 }
