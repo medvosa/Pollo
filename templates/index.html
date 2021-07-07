@@ -3,6 +3,7 @@
         <template #header>
             <h4 class="not-margin form-title">
                 Добро пожаловать
+                <div v-if="isError">Логин или пароль введен неверно</div>
             </h4>
         </template>
         <form action="/login" method="post">
@@ -31,6 +32,9 @@
         <template #header>
             <h4 class="not-margin form-title">
                 Добро пожаловать
+                {% raw %}
+                <div v-if="isError">{{ errorText }}</div>
+                {% endraw %}
             </h4>
         </template>
         <form action="/signup" method="post">
@@ -84,7 +88,7 @@
         <section class="user-index-polls">
             {% for survey in user_surveys %}
             <div class="poll-card">
-                <a href="/runpoll/{{ survey.id }}">
+                <a href="/stats/{{ survey.id }}">
                     <div class="poll-picture"></div>
                     <p class="poll-label">{{ survey.name }}</p>
                 </a>
@@ -108,7 +112,18 @@
             {% for survey in surveys %}
             <div class="poll-card">
                 <a href="/runpoll/{{ survey.id }}">
-                    <div class="poll-picture"></div>
+                    <div class="poll-picture"
+                         {% if survey.image_url and survey.image_url|length>0 %}
+                         style="background-image: url({{ survey.image_url }})"
+                        {% endif %}>
+                        <!--
+                        <div class="features-wrapper">
+                            <div><p>анализировать статистику</p></div>
+                            <div><p>пройти опрос</p></div>
+                            <div><p>поделиться ссылкой</p></div>
+                        </div>
+                        -->
+                    </div>
                     <p class="poll-label">{{ survey.name }}</p>
                 </a>
             </div>

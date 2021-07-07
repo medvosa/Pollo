@@ -33,6 +33,7 @@ nav {
 .navbar {
     display: flex;
     list-style: none;
+    align-items: center; 
 }
 .navbar > li {
     margin-left: none;
@@ -168,12 +169,41 @@ h1 {
 }
 
 .poll-picture {
-    background-color: coral;
+    background-image: url(https://images.unsplash.com/photo-1518558133979-a4f550538f32?ixlib=rb-1.2.1&auto=format&fit=crop&w=1568&q=80);
+    background-position: center;
+    background-size: cover;
+    background-color: transparent;
+    /*
+    background-blend-mode: color-burn; 
+    */
     width: 21em;
     height: 13em;
     border-radius: 3em;
     box-shadow: 0 3px 8px rgba(82, 82, 82, 0.3);
     cursor: pointer;
+    transition: .2s;
+}
+
+/*
+.features-wrapper {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+*/
+
+.poll-picture:hover .features-wrapper {
+    display: flex;
+}
+
+.poll-picture:hover {
+    background-color: rgba(255,255,255,.9);
+}
+
+.poll-picture div {
+    color: black;
 }
 
 .poll-label {
@@ -273,6 +303,7 @@ footer {
 
 .vs-input-content {
     margin-bottom: .5em;
+    width:100%;
 }
 
 .vs-dialog__content.notFooter {
@@ -353,6 +384,10 @@ footer {
 
 .user-main-section {
     overflow-x: scroll;
+}
+
+.empty{
+    flex-grow:1;
 }
 
 @media (min-width: 786px) {

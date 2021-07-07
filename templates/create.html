@@ -1,24 +1,36 @@
 {% include "header.html" %}
 
+    <link rel="stylesheet" href="/static/style/create.css">
 
-<div class="head-section">
-    <div class="head-elements-wrapper">
-        <h1>Конструктор опросов</h1>
+    <div class="head-section constructing-polls-label">
+        <div class="head-elements-wrapper">
+            <h1>Конструктор опросов</h1>
+        </div>
     </div>
+
+<div class="tool-blocks-wrapper">
+
+    <h2>Название опроса</h2>
+    <vs-input type="text" v-model="title" placeholder="Введите название опроса"></vs-input>
+    <h2>адрес картинки</h2>
+    <vs-input type="text" v-model="imageUrl" placeholder="Введите адрес картинки"></vs-input>
+    {% raw %}
+
+    <h2>Настройки доступа</h2>
+    <vs-checkbox v-model="isPrivate">
+        Сделать опрос приватным (доступным только по ссылке)
+    </vs-checkbox>
+    <question v-for="(question, num) in questions" v-bind:num="num" v-bind:question="question"></question>
+    <question-template v-bind:num="questions.length" question=""></question-template>
+    <vs-tooltip bottom shadow not-hover v-model="activeTooltip1">
+        <div v-if="created">
+            your link is:<a :href="link" >{{ link }}</a>
+        </div>
+
+    </vs-tooltip>
+    <vs-button class="save-button" relief dark v-on:click="save">Готово</vs-button>
+
 </div>
-
-<h2>Название опроса</h2>
-<vs-input type="text" v-model="title" placeholder="Введите название опроса"></vs-input>
-
-{% raw %}
-
-
-
-<question v-for="(question, num) in questions" v-bind:num="num" v-bind:question="question"></question>
-<question-template v-bind:num="questions.length" question=""></question-template>
-
-
-<vs-button relief dark v-on:click="save">save</vs-button>
 
 {% endraw %}
 {% include "footer.html" %}
@@ -26,6 +38,20 @@
 <script>
     function arr(...x){
         return x;
+    }
+    function ftch(url, pars, callb){
+        console.log('aaa')
+        fetch(url, pars).then(callb)
+    }
+    /*ftch('/',{},async function(i){
+        text = await i.text();
+        console.log(text)
+    })*/
+    async function js_fetch(url, pars, cb){
+        ftch(url,pars,async function(i) {
+            text = await i.text();
+            cb(text)
+        })
     }
 </script>
 

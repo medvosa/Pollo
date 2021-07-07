@@ -12,16 +12,44 @@
 
     Vue:component('question', Object{
         data=function()
-            return Object{};
+            return Object{
+                answers=window:arr('да','нет');
+                ansVar="";
+            };
         end;
         props= window:arr(
             'num',
             'question'
         );
+        methods=Object{
+            remove = function(self)
+                print(math.floor(self.num+1))
+                print(window.app.questions:splice(math.floor(self.num),1))
+                --table.remove(window.app.questions,math.floor(self.num+1))
+            end;
+            addAnsVar=function(self)
+                print(self.answers)
+                print(self.ansVar)
+                self.answers:push(self.ansVar)
+                window.app:setAnswers(self.num,self.answers)
+                self.ansVar=""
+            end
+        };
         template=[[
-            <div>
+            <div v-bind:id="'wr'+num">
                 <h3 class="bp0">Вопрос {{ num + 1 }}</h3>
-                <vs-input v-model="question.caption" /></vs-input>
+                <svg xmlns="http://www.w3.org/2000/svg" width="17.707" height="17.707" viewBox="0 0 17.707 17.707" @click="remove" style="float: right; transform: translate(30px, 11px);">
+                    <g transform="translate(0.354 0.354)">
+                        <line style="fill:none;stroke:#000;" x2="17" y2="17"/>
+                        <line style="fill:none;stroke:#000;" x2="17" y2="17" transform="translate(17) rotate(90)"/>
+                    </g>
+                </svg>
+                <vs-input v-model="question.caption"/>
+                <div class="buttons-wrapper">
+                    <vs-button flat dark color="#F7F7F7" size="large" v-for="i in answers" >{{i}}</vs-button>
+
+                    <vs-input placeholder="другое" v-on:change="addAnsVar" v-model="ansVar"></vs-input>
+                </div>
             </div>
         ]]
     });
@@ -39,7 +67,7 @@
             addQuestion = function(self,event)
                 window.app:addQuestion(event.target.value);
                 self.text='';
-            end
+            end;
         },
         template = [[
             <div>
@@ -50,6 +78,20 @@
         ]]
     });
 
+function str_split(str, sep)
+    if sep == nil then
+        sep = '%s'
+    end
+
+    local res = {}
+    local func = function(w)
+        table.insert(res, w)
+    end
+
+    string.gsub(str, '[^'..sep..']+', func)
+    return res
+end
+
 
 window.app = js.new(js.global.Vue, Object{
 	el = "#mainApp";
@@ -59,26 +101,45 @@ window.app = js.new(js.global.Vue, Object{
             for i =1, #window.app.questions do
                 print(window.app.questions[i-1].caption)
             end
-            js.global:fetch('/create', Object{
+            js.global:js_fetch('/create', Object{
                 method = "POST",
                 headers =  Object{
                     ['Accept'] = 'application/json',
                     ['Content-Type'] = 'application/json'
                 },
                 body = window.JSON:stringify(Object{
+                    imageUrl=window.app.imageUrl,
                     title = window.app.title,
+                    isPrivate = window.app.isPrivate,
                     questions = window.app.questions,
                 })
-            })
+            },function(self,res)
+                window.res=res
+                print(str_split(res,"'")[2])
+                window.app.created=true;
+                window.app.link=window.location.origin .. '/hash/' .. str_split(res,"'")[2]
+                --print(str_split(res,"'")[2])
+            end)
         end;
         addQuestion=function(t,caption)
             print(caption);
-            window.app.questions:push(Object{caption=caption});
-        end
+            window.app.questions:push(Object{caption=caption, answers=window.arr('','да','нет')});
+        end;
+        setAnswers = function(self,num,answers)
+            self.questions[num].answers=answers;
+        end;
+        copyLink = function()
+            js.global:cpy(window.app.link)
+        end;
     };
 	data = Object{
+        imageUrl="";
+        isPrivate=false;
         title='';
         questions=window:arr();
+        activeTooltip1= false;
+        created=false;
+        link='';
 	}
 })
 {% endraw %}

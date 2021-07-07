@@ -1,10 +1,10 @@
 local js = require "js"
 local window = js.global
 
-package.loadlib("https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js", "*")
-package.loadlib("https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js","*")
+package.loadlib("/static/vue.js", "*")
+package.loadlib("/static/vuesax.min.js","*")
 
-local Object = dofile("https://gist.githubusercontent.com/daurnimator/5a7fa933e96e14333962093322e0ff95/raw/8c6968be0111c7becc485a692162ad100e87d9c7/Object.lua").Object
+local Object = dofile("/static/lib/Object.lua").Object
 
 
 isPollsToggled = false;
@@ -42,8 +42,48 @@ window.app = js.new(js.global.Vue, Object{
         isRegister = false;
         passwordRepeat='';
         password='';
+        isError=false;
         test=window.arr(0,1,2,3);
         email='';
+        errorText='';
 	}
 })
+
+
+if window.location.hash=="#errorlogin" then
+    window.app:login()
+    window.app.isError=true;
+end
+
+if window.location.hash=="#errorreg_invalid_mail" then
+    window.app:register()
+    window.app.isError=true;
+    window.app.errorText='введен неверный email';
+end
+
+if window.location.hash=="#errorreg_exists" then
+    window.app:register()
+    window.app.isError=true;
+    window.app.errorText='пользователь с таким email уже существует';
+end
+
+if window.location.hash=="#errorreg_not_match" then
+    window.app:register()
+    window.app.isError=true;
+    window.app.errorText='пароль и повтор пароля должны совпадать';
+end
+
+if window.location.hash=="#errorreg_easy_password" then
+    window.app:register()
+    window.app.isError=true;
+    window.app.errorText='пароль слишком простой';
+end
+
+if window.location.hash=="#tologin" then
+    window.app:login()
+end
+
+if window.location.hash=="#toreg" then
+    window.app:register()
+end
 

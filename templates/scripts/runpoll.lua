@@ -1,11 +1,12 @@
 local js = require "js"
 local window = js.global
 
-package.loadlib("https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js", "*")
-package.loadlib("https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js","*")
+package.loadlib("/static/lib/vue.js", "*")
+package.loadlib("/static/lib/vuesax.min.js","*")
+
 
 local Object = dofile("https://gist.githubusercontent.com/daurnimator/5a7fa933e96e14333962093322e0ff95/raw/8c6968be0111c7becc485a692162ad100e87d9c7/Object.lua").Object
-
+local Inspect = dofile("https://raw.githubusercontent.com/kikito/inspect.lua/master/inspect.lua")
 
 isPollsToggled = false;
 
@@ -34,6 +35,12 @@ window.app = js.new(js.global.Vue, Object{
                 this.questionNum=this.questionNum+1;
                 if this.questionNum<=#window.questions then
                     this.question = window.questions[this.questionNum].text;
+                    this.availableAnswers = window.questions[this.questionNum].answers;
+                    print("set");
+                    --for i=1,#this.availableAnswers do
+                    --    print(this.availableAnswers[i])
+                    --end
+                    --print("===")
                     this.questionTextClass="question-1";
                 else
                     this.ended = true;
@@ -41,14 +48,39 @@ window.app = js.new(js.global.Vue, Object{
                     print("end")
                     this.mainPart="dnone";
                     this.questionsEnd="questions op1";
+
+                    window.resarr = window:arr()
+                    for i=1,#this.answers do
+                        print(Inspect.inspect(this.answers[i]))
+                        window.resarr:push(this.answers[i])
+                    end
+                    js.global:fetch('/pollsave', Object{
+                        method = "POST",
+                        headers =  Object{
+                            ['Accept'] = 'application/json',
+                            ['Content-Type'] = 'application/json'
+                        },
+                        body = window.JSON:stringify(Object{
+                            pollId=this.pollId,
+                            answers = window.resarr,
+                            questions = window.questionIds,
+                        })
+                    })
                     --this.questions="questions wd0";
                 end
             end,500)
         end;
-        answer=function(ans)
+        answer=function(t,ans)
             this:nextQuestion();
+            print(ans)
             this.answers[#this.answers+1]=ans;
-            print(#this.answers);
+            --print(Inspect.inspect(this.answers));
+        end;
+        register=function()
+            window.location:replace('/#toreg')
+        end;
+        login=function()
+            window.location:replace('/#tologin')
         end
     };
 	data = Object{
@@ -58,6 +90,7 @@ window.app = js.new(js.global.Vue, Object{
         surveyTitle="survey-title";
         outWrap="out-wrap";
         mainPart="";
+        answers={};
         btnWrap="";
         questions="questions wd0";
         innerClass="";
@@ -65,7 +98,8 @@ window.app = js.new(js.global.Vue, Object{
         ended = false;
         questionTextClass="question-1";
         runPollButtonClass="run-poll-button";
-        answers = {};
+        pollId=window.pollId;
+        availableAnswers = window.questions[1].answers;
 	}
 })
 
